@@ -15,10 +15,10 @@ export class ScrollToTopComponent implements OnInit {
 
   windowScroll() {
     const navbar = document.getElementById("scroll_top");
-    if (document.body.scrollTop >= 2000 || document.documentElement.scrollTop > 2000) {
-      navbar.classList.add("scroll-up");
+    if (document.body.scrollTop >= 500 || document.documentElement.scrollTop > 500) {
+      navbar.style.display = 'block';;
     } else {
-      navbar.classList.remove("scroll-up");
+      navbar.style.display = 'none';;
     }
   }
 
@@ -32,7 +32,6 @@ export class ScrollToTopComponent implements OnInit {
         window.clearInterval(scrollToTop);
       }
     }, 16);
-
   }
 
 }
