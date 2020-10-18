@@ -7,6 +7,16 @@ import { WebsiteLayoutComponent } from './_view/layout/website-layout/website-la
 const routes: Routes = [
 
   {
+    path: '',
+    component: WebsiteLayoutComponent,
+    children: [
+      {
+        path: '', loadChildren: () => import('./_view/home/home.module').then(m => m.HomeModule)
+      }
+    ]
+  },
+
+  {
     path: "authentication",
     component: AuthLayoutComponent,
     children: [
@@ -16,25 +26,20 @@ const routes: Routes = [
           import("./_view/authentication/authentication.module").then(
             m => m.AuthenticationModule
           )
-      },
-      {
-        path: "error",
-        loadChildren: () =>
-          import("./_view/error/error.module").then(m => m.ErrorModule)
-      },
+      }
     ]
   },
-
   {
-    path: '',
-    component: WebsiteLayoutComponent,
+    path: "error",
+    component: AuthLayoutComponent,
     children: [
       {
-        path: '', loadChildren: () => import('./_view/home/home.module').then(m => m.HomeModule)
-      },
+        path: "",
+        loadChildren: () =>
+          import("./_view/error/error.module").then(m => m.ErrorModule)
+      }
     ]
   },
-
   {
     path: "**",
     redirectTo: "error/404"
