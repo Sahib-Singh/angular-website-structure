@@ -12,10 +12,14 @@ const routes: Routes = [
     children: [
       {
         path: '', loadChildren: () => import('./_view/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: "error",
+        loadChildren: () =>
+          import("./_view/error/error.module").then(m => m.ErrorModule)
       }
     ]
   },
-
   {
     path: "authentication",
     component: AuthLayoutComponent,
@@ -29,17 +33,7 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: "error",
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: "",
-        loadChildren: () =>
-          import("./_view/error/error.module").then(m => m.ErrorModule)
-      }
-    ]
-  },
+
   {
     path: "**",
     redirectTo: "error/404"
